@@ -1,0 +1,24 @@
+.app-navbar {
+  color: black;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar-img {
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  .navbar-action {
+    font-size: initial;
+    display: flex;
+    justify-content: space-between;
+  }
+}
