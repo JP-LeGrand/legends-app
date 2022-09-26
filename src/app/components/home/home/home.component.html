@@ -1,1 +1,32 @@
 <app-navigation></app-navigation>
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="centered">
+    <h1>FIND YOUR FRAGRANCE</h1>
+    <hr />
+    <h5>
+      ​Search for your favourite perfume brands, names, ingredients or notes and
+      we'll recommend a high quality, but affordable alternative for you.
+    </h5>
+  </div>
+  <div class="search">
+    <mat-form-field appearance="fill">
+      <input
+        type="text"
+        placeholder="I'm looking for. . ."
+        matInput
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let perfume of filteredOptions | async"
+          [value]="perfume"
+        >
+          {{ perfume }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-raised-button color="warn">Search</button>
+  </div>
+</div>
