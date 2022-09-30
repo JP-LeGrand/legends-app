@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Product } from 'src/app/models/product';
+import { Observable, OperatorFunction } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  filter,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -9,73 +15,59 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  perfumes: string[] = [];
+  products: Product[] = [];
+  public product?: Product;
+  formatter = (product: Product) => product.name;
   myControl = new FormControl('');
   filteredOptions: Observable<string[]> | undefined;
   constructor() {}
 
   ngOnInit(): void {
-    this.perfumes = [
-      'DIOR',
-      'HUGO BOSS',
-      'Lancôme',
-      'Marc Jacobs',
-      'Mugler',
-      'Paco Rabanne',
-      'Tiffany & Co',
-      'TOM FORD',
-      'Yves Saint Laurent',
-      'Agent Provocateur',
-      'Alex Simone',
-      'All Saints',
-      'Anna Sui',
-      'Aramis',
-      ' Archipelago Botanicals',
-      'Argan',
-      'Ariana Grande',
-      'Armani',
-      'Aroma Works',
-      'Australian Bodycare',
-      'Avant Skincare',
-      'Axis',
-      'Azzaro',
-      'Banana Republic',
-      'Barber Pro',
-      'Beaudiani',
-      'Beauty Pro',
-      'Berdoues',
-      'Billie Eilish',
-      'Britney Spears',
-      'Brut',
-      'Bubble Up',
-      'Burberry',
-      'Bvlgari',
-      'Byredo',
-      'Cacharel',
-      'Calvin Klein',
-      'Candlelight',
-      'Carolina Herrera',
-      'Cartier',
-      'Cerruti',
-      'CHANEL',
-      'Chloé',
-      'Chopard',
-      'Clinique',
-      'Coach',
-      "Coty L'Aimant",
-      'Creightons',
+    this.products = [
+      { name: 'Dior' },
+      { name: 'HUGO BOSS' },
+      { name: 'Lancôme' },
+      { name: 'Marc Jacobs' },
+      { name: 'Mugler' },
+      { name: 'Paco Rabanne' },
+      { name: 'Tiffany & Co' },
+      { name: 'TOM FORD' },
+      { name: 'Yves Saint Laurent' },
+      { name: 'Agent Provocateur' },
+      { name: 'Alex Simone' },
+      { name: 'All Saints' },
+      { name: 'Anna Sui' },
+      { name: 'Aramis' },
+      { name: ' Archipelago Botanicals' },
+      { name: 'Argan' },
+      { name: 'Ariana Grande' },
+      { name: 'Armani' },
+      { name: 'Aroma Works' },
+      { name: 'Australian Bodycare' },
+      { name: 'Axis' },
+      { name: 'Azzaro' },
+      { name: 'Banana Republic' },
+      { name: 'Barber Pro' },
+      { name: 'Beaudiani' },
+      { name: 'Beauty Pro' },
+      { name: 'Burberry' },
+      { name: 'Bvlgari' },
+      { name: 'Calvin Klein' },
+      { name: 'Carolina Herrera' },
+      { name: 'CHANEL' },
     ];
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || ''))
-    );
   }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.perfumes.filter((perrfume) =>
-      perrfume.toLowerCase().includes(filterValue)
+  search: OperatorFunction<string, readonly Product[]> = (
+    text$: Observable<string>
+  ) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      filter((term) => term.length >= 2),
+      map((term) =>
+        this.products
+          .filter((product) => new RegExp(term, 'mi').test(product.name))
+          .slice(0, 10)
+      )
     );
-  }
 }

@@ -1,23 +1,11 @@
-.container {
-  position: relative;
-  text-align: center;
-  color: white;
+.home-container {
   background-image: url(../../../../assets/images/background.jpg);
-  background-position: center;
-  background-size: cover;
-  height: 35%;
-}
-.centered {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 
-.search {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  top: 30%;
-  left: 30%;
+.home-divider {
+  border-top: 8px solid !important;
+  border-radius: 5px;
 }
