@@ -8,14 +8,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialModule } from './material.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { BootstrapModule } from './bootstrap.module';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavigationComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavigationComponent,
+    NavbarComponent,
+    FooterComponent,
+  ],
   imports: [
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    BootstrapModule,
+    NgbCollapseModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
