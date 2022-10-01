@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapModule } from './bootstrap.module';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { BootstrapModule } from './bootstrap.module';
     HomeComponent,
     NavigationComponent,
     NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
