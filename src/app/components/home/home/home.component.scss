@@ -9,3 +9,12 @@
   border-top: 8px solid !important;
   border-radius: 5px;
 }
+
+.img-container {
+  position: relative;
+}
+.img-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

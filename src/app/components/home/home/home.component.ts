@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   formatter = (product: Product) => product.name;
   myControl = new FormControl('');
   filteredOptions: Observable<string[]> | undefined;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -57,6 +58,7 @@ export class HomeComponent implements OnInit {
       { name: 'CHANEL' },
     ];
   }
+
   search: OperatorFunction<string, readonly Product[]> = (
     text$: Observable<string>
   ) =>

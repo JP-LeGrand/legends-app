@@ -1,29 +1,78 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Shop</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sale</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-    </ul>
+<nav ngbNav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isMenuCollapsed = !isMenuCollapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      [ngbCollapse]="isMenuCollapsed"
+      class="collapse navbar-collapse justify-content-center"
+      id="navbarNav"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a
+            class="nav-link"
+            [routerLink]="['/']"
+            (click)="isMenuCollapsed = true"
+            >Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/']"
+            (click)="isMenuCollapsed = true"
+            >Mens Fragrances</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/']"
+            (click)="isMenuCollapsed = true"
+            >Ladies Fragrances</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/']"
+            (click)="isMenuCollapsed = true"
+            >Sale</a
+          >
+        </li>
+        <li class="nav-item dropdown" ngbDropdown>
+          <a
+            class="nav-link dropdown-toggle"
+            ngbDropdownToggle
+            href="#"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            >Customer Help</a
+          >
+          <div class="dropdown-menu bg-light" ngbDropdownMenu>
+            <a
+              class="dropdown-item"
+              [routerLink]="['/']"
+              (click)="isMenuCollapsed = true"
+              ngbDropdownItem
+              >Contact us</a
+            >
+            <a
+              class="dropdown-item"
+              [routerLink]="['/']"
+              (click)="isMenuCollapsed = true"
+              ngbDropdownItem
+              >FAQs</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
